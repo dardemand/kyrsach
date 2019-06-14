@@ -26,12 +26,12 @@ void modul::setTitleModul(char *titleM)
 	this->titleM = titleM;
 }
 
-int modul::getNext()
+modul *modul::getNext()
 {
-	return this->next;
+	return this->modul::next;
 }
 
-void modul::setNext(int next)
+void modul::setNext(modul *next)
 {
 	this->next = next;
 }

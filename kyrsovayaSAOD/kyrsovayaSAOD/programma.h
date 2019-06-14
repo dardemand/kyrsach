@@ -1,4 +1,5 @@
 #include "modul.h"
+#include "podporgram.h"
 #include <iostream>
 #include<string>
 #pragma once
@@ -14,9 +15,18 @@ public:
 	modul *getModul();
 	void AddElement();
 	void DeleteElement();
+	void setModule(modul *modul);
+	void PushModule(modul *modul);
+	void PushPodpr();
+	void PopPodpr();
+	void PopMOdule();
+	void Show();
+	void LoadFile();
+	void SaveFile();
+	void PushModul(modul *modul);
 private:
 	char *Name_program;
-	modul modul[N];
+	modul *modul[N];
 	int count;
 };
 
