@@ -8,22 +8,21 @@ const int N = 20;
 class programma
 {
 public:
-	programma();
+	programma(char *Name_program);
 	~programma();
 	char *getName();
 	void setName(char *Name_program);
-	modul *getModul();
+	modul *getModul();//f
 	void AddElement();
 	void DeleteElement();
-	void setModule(modul *modul);
-	void PushModule(modul *modul);
-	void PushPodpr();
-	void PopPodpr();
-	void PopMOdule();
-	void Show();
+	void setModule();
+	void PushModule();//f
+	void PushPodpr();//f
+	void PopPodpr();//f
+	void PopModule();//f
+	void Show();//f
 	void LoadFile();
 	void SaveFile();
-	void PushModul(modul *modul);
 private:
 	char *Name_program;
 	modul *modul[N];

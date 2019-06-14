@@ -12,8 +12,8 @@ public:
 	~modul();
 	char *GetTitleModul();
 	void setTitleModul(char *TitleM);
-	modul *getNext();
-	void setNext(modul *next);
+	int getNext();
+	void setNext(int next);
 	void Push_Podpr(podporgram *podprogram);
 	void Pop_Podpr();
 	void setPodpr(podporgram *podprogram);
@@ -21,7 +21,7 @@ public:
 
 private:
 	char *titleM;//имя модуля
-	modul *next;
+	int next;
 	podporgram *podprogram;
 };
 

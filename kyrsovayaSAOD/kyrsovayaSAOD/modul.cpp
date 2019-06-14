@@ -13,7 +13,12 @@ modul::modul()
 
 modul::~modul()
 {
-
+	while (this->GetPodpr() != nullptr)
+	{
+		podporgram *temp = this->GetPodpr();
+		this->setPodpr(this->podprogram->getNext());
+		delete(temp);
+	}
 }
 
 char *modul::GetTitleModul()
@@ -26,12 +31,12 @@ void modul::setTitleModul(char *titleM)
 	this->titleM = titleM;
 }
 
-modul *modul::getNext()
+int modul::getNext()
 {
-	return this->modul::next;
+	return this->next;
 }
 
-void modul::setNext(modul *next)
+void modul::setNext(int next)
 {
 	this->next = next;
 }
