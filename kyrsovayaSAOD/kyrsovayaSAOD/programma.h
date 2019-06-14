@@ -8,14 +8,12 @@ const int N = 20;
 class programma
 {
 public:
-	programma(char *Name_program);
+	programma();
 	~programma();
 	char *getName();
 	void setName(char *Name_program);
-	modul *getModul();//f
 	void AddElement();
 	void DeleteElement();
-	void setModule();
 	void PushModule();//f
 	void PushPodpr();//f
 	void PopPodpr();//f
@@ -25,7 +23,7 @@ public:
 	void SaveFile();
 private:
 	char *Name_program;
-	modul *modul[N];
+	modul *modl[N];
 	int count;
 };
 

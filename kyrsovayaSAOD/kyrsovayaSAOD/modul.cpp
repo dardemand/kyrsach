@@ -6,8 +6,7 @@
 
 modul::modul()
 {
-	this->next = -1;
-	this->titleM;
+	this->titleM=nullptr;
 	this->setPodpr(NULL);
 }
 
@@ -31,15 +30,6 @@ void modul::setTitleModul(char *titleM)
 	this->titleM = titleM;
 }
 
-int modul::getNext()
-{
-	return this->next;
-}
-
-void modul::setNext(int next)
-{
-	this->next = next;
-}
 
 void modul::Push_Podpr(podporgram *podprogram)
 {
