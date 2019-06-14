@@ -147,14 +147,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="modul.h" />
     <ClInclude Include="podporgram.h" />
-    <ClInclude Include="Pridmet.h" />
+    <ClInclude Include="programma.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="kyrsovayaSAOD.cpp" />
+    <ClCompile Include="modul.cpp" />
     <ClCompile Include="podporgram.cpp" />
+    <ClCompile Include="programma.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

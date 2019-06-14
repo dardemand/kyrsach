@@ -21,10 +21,13 @@
     <ClInclude Include="targetver.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Pridmet.h">
+    <ClInclude Include="podporgram.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="podporgram.h">
+    <ClInclude Include="modul.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="programma.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
@@ -36,6 +39,12 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="podporgram.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="modul.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="programma.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

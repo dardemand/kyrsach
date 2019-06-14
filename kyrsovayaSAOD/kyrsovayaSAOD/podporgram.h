@@ -3,6 +3,7 @@ class podporgram
 {
 public:
 	podporgram();
+	~podporgram();
 	podporgram(char* title, int quantity);
 	int getQuantity();
 	char* getTitle();
@@ -10,10 +11,10 @@ public:
 	void setTitle(char* title);
 	void setNext(podporgram *podprogram);
 	podporgram *getNext();
-	~podporgram();
+
 private:
-	int quantity;
-	char *title;
-	podporgram *Next;
+	int quantity;//количество строк
+	char *title;//название подпрограммы
+	podporgram *Next;//указатель на следующий элемент
 };
 
