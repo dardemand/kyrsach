@@ -19,7 +19,6 @@ public:
 
 private:
 	char *titleM;//имя модуля
-	int next;
 	podporgram *podprogram;
 };
 

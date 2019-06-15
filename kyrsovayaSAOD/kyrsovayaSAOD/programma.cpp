@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS 
 #include "stdafx.h"
 #include "programma.h"
 #include "podporgram.h"
@@ -6,8 +7,10 @@
 #include <fstream>
 #include <iomanip>
 #include <cstdlib>
+#include <stdlib.h>
+#include <C:\Users\Ильнур\source\SAOD\Kyrsovaya SAOD\Kyrsovaya SAOD\tinyxml2.h>
 
-
+using namespace std;
 programma::programma()
 {
 	this->Name_program = NULL;
@@ -42,44 +45,6 @@ void programma::setName(char *Name_program)
 	this->Name_program = Name_program;
 }
 
-void programma::PushModule()//добавление модуля
-{
-	if(count!=N)
-	{ 
-		char *titleM = (char*)malloc(256 * sizeof(char));
-		std::cout << "Введите название модуля" << std::endl;
-		std::cin >> titleM;
-	int j = 0;
-	// if (count==0)
-//	 {
-//		modl[0]->setTitleModul(titleM);
-	//	modl[0]->setPodpr(NULL);
-	//	this->count++;
-	// }
-	// else
-	// {
-		while (j < this->count)
-		{
-			if (strcmp(modl[j]->GetTitleModul(),titleM)==0)
-			{
-				std::cout << "Ошибка ,модуль с таким имение есть!" << std::endl;
-				system("pause");
-				return;
-			}
-			j++;
-		}
-		modl[j]->setTitleModul(titleM);
-		modl[j]->setPodpr(NULL);
-		this->count++;
-	 }
-	
-	else
-	{
-		std::cout << "Память заполнена " << std::endl;
-		system("pause");
-	}
-}
-
 void programma::PushPodpr()
 {
 	char *titleM = (char*)malloc(256 * sizeof(char));
@@ -92,7 +57,45 @@ void programma::PushPodpr()
 		if ((strcmp(modl[j]->GetTitleModul(), titleM) == 0))
 		{
 			f = j;
-			break;
+			char *title = (char*)malloc(256 * sizeof(char));
+			int quantity;
+			std::cout << "Модуль найден " << std::endl;
+			std::cout << "Введите название подпрограммы" << std::endl;
+			std::cin >> title;
+			std::cout << "Введите количество строк кода" << std::endl;
+			while (!(std::cin >> quantity))
+			{
+				cout << "Ошибка ,вы ввели не правильные данные" << endl;
+				std::cin.clear();
+				std::cin.ignore(INT_MAX, '\n');
+				std::cout << "Введите количество строк кода" << std::endl;
+			}
+			podporgram *current = modl[f]->GetPodpr();
+			podporgram *ctemp = new podporgram(title, -quantity);
+			if (current == NULL)
+			{
+				ctemp->setNext(current);
+				current = ctemp;
+				modl[f]->Push_Podpr(current);
+			}
+			else
+			{
+				while (current != NULL)
+				{
+					if (strcmp(current->getTitle(), title) == 0)
+					{
+						std::cout << "Ошибка ,подпрограммая с таким названием уже есть!" << std::endl;
+						system("pause");
+						return;
+					}
+					current = current->getNext();
+				}
+				ctemp->setNext(current);
+				current = ctemp;
+				modl[f]->Push_Podpr(current);
+			}
+
+			return;
 		}
 		j++;
 	}
@@ -102,44 +105,6 @@ void programma::PushPodpr()
 		system("pause");
 		return;
 	}
-	char *title = (char*)malloc(256 * sizeof(char));
-	int quantity;
-	std::cout << "Модуль найден " << std::endl;
-	std::cout << "Введите название подпрограммы" << std::endl;
-	std::cin >> title;
-	std::cout << "Введите количество строк кода" << std::endl;
-	while (!(std::cin >> quantity))
-	{
-		cout << "Ошибка ,вы ввели не правильные данные" << endl;
-		std::cin.clear();
-		std::cin.ignore(INT_MAX, '\n');
-		std::cout << "Введите количество строк кода" << std::endl;
-	}
-	podporgram *current = modl[f]->GetPodpr();
-	podporgram *ctemp = new podporgram(title, quantity);
-	if (current == NULL)
-	{
-		ctemp->setNext(current);
-		current = ctemp;
-		modl[f]->Push_Podpr(current);
-	}
-	else
-	{
-		while (current != NULL)
-		{
-			if (strcmp(current->getTitle(),title ) == 0)
-			{
-				std::cout << "Ошибка ,подпрограммая с таким названием уже есть!" << std::endl;
-				system("pause");
-				return;
-			}
-			current = current->getNext();
-		}
-	}
-	podporgram *vurrent = modl[f]->GetPodpr();
-	ctemp->setNext(vurrent);
-	vurrent = ctemp;
-	modl[f]->Push_Podpr(vurrent);
 	return;
 }
 
@@ -208,6 +173,10 @@ void programma::PopPodpr()
 		if (strcmp(modl[j]->GetTitleModul(), titleM) == 0)
 		{
 			f = j;
+			std::cout << "Модуль найден " << std::endl;
+			modl[f]->Pop_Podpr();
+			system("pause");
+			return;
 		}
 	}
 	if (f = -1)
@@ -215,13 +184,6 @@ void programma::PopPodpr()
 		std::cout << "Модуль не найден " << std::endl;
 		system("pause");
 		return;
-	}
-	else
-	{
-		std::cout << "Модуль найден " << std::endl;
-		modl[f]->Pop_Podpr();
-		std::cout << "Подпрограмма удалена " << std::endl;
-		system("pause");
 	}
 }
 
@@ -250,19 +212,31 @@ void programma::AddElement()
 	{
 		if (this->count != N)
 		{
+			
 			char *titleM = (char*)malloc(256 * sizeof(char));
 			std::cout << "Введите название модуля" << std::endl;
 			std::cin >> titleM;
-			if (this->count == 0)
+			int i = 0;
+			while (i<this->count)
 			{
-				modl[0]->setTitleModul(titleM);
-				modl[0]->setPodpr(NULL);
-				this->count++;
+				if (strcmp(modl[i]->GetTitleModul(), titleM) == 0)
+				{
+					std::cout << "Ошибка ,модуль с таким имение есть!" << std::endl;
+					system("pause");
+					break;
+				}
+				i++;
 			}
+				if (this->count == 0)
+				{
+					modl[0]->setTitleModul(titleM);
+					modl[0]->setPodpr(NULL);
+					this->count++;
+				}
 			else
 			{
-				modl[count - 1]->setTitleModul(titleM);
-				modl[count - 1]->setPodpr(NULL);
+				modl[i]->setTitleModul(titleM);
+				modl[i]->setPodpr(NULL);
 				this->count++;
 			}
 			break;
@@ -271,6 +245,7 @@ void programma::AddElement()
 		{
 			std::cout << "Память заполнена" << std::endl;
 			system("pause");
+			break;
 		}
 	}
 	case 2:
@@ -322,5 +297,53 @@ void programma::DeleteElement()
 		this->PopPodpr();
 		break;
 	}
+	}
+}
+
+void programma::SaveFile()
+{
+	int i = 0;
+	tinyxml2::XMLDocument file;
+	tinyxml2::XMLNode *proot = file.NewElement("Programma");
+	file.InsertFirstChild(proot);
+	tinyxml2::XMLElement *pName = file.NewElement("Name_programm");
+	if (this->getName() != nullptr) {
+		char* msg = (char*)malloc(256 * sizeof(char));
+		strcpy(string, msg, this->getName());
+		pName->SetText(msg);
+		proot->InsertEndChild(pName);
+		while (i<this->count )
+		{
+			tinyxml2::XMLElement *pEl = file.NewElement("Modul");
+			tinyxml2::XMLElement *pElement = file.NewElement("TitleM");
+			char* msg = (char*)malloc(256 * sizeof(char));
+			strcpy(msg, modl[i]->GetTitleModul());
+			pElement->SetText(msg);
+			pEl->InsertEndChild(pElement);
+			proot->InsertEndChild(pEl);
+			podporgram *p = modl[i]->GetPodpr();
+			while (p != NULL)
+			{
+				tinyxml2::XMLElement *pTitle = file.NewElement("Title");
+				tinyxml2::XMLElement *pQuantity = file.NewElement("Quantity");
+				char* msg = (char*)malloc(256 * sizeof(char));
+				strcpy(msg, p->getTitle());
+				pTitle->SetText(msg);
+				pQuantity->SetText(p->getQuantity());
+				pEl->InsertEndChild(pTitle);
+				pEl->InsertEndChild(pQuantity);
+				p = p->getNext();
+			}
+			
+		}
+		tinyxml2::XMLError eResult = file.SaveFile("file.xml");
+		std::cout << "Сохранение успешно прошла" << std::endl;
+		system("pause");
+	}
+	else
+	{
+		std::cout << "Ошибка , нельзя сохранить. Нету название лиги" << std::endl;
+		system("pause");
+		return;
 	}
 }

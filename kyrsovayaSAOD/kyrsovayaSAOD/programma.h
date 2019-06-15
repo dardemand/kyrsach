@@ -1,10 +1,12 @@
+#define _CRT_SECURE_NO_WARNINGS 
 #include "modul.h"
 #include "podporgram.h"
 #include <iostream>
-#include<string>
+#include <string>
+#include "tinyxml.h"
 #pragma once
 using namespace std;
-const int N = 20;
+const int N =5;
 class programma
 {
 public:
@@ -14,11 +16,10 @@ public:
 	void setName(char *Name_program);
 	void AddElement();
 	void DeleteElement();
-	void PushModule();//f
-	void PushPodpr();//f
-	void PopPodpr();//f
-	void PopModule();//f
-	void Show();//f
+	void PushPodpr();
+	void PopPodpr();
+	void PopModule();
+	void Show();
 	void LoadFile();
 	void SaveFile();
 private:

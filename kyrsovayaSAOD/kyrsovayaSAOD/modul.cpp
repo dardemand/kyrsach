@@ -55,7 +55,6 @@ void modul::Pop_Podpr()
 		delete temp;
 		this->setPodpr(current);
 		std::cout << "Подпрограмма удалена" << std::endl;
-		system("pause");
 	}
 }
 
