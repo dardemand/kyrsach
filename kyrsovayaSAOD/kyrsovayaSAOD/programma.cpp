@@ -145,7 +145,7 @@ void programma::PopModule()
 	int j = count-1;
 	if (count == 0)
 	{
-		std::cout << "Ошибка , нельзя удалить команду " << std::endl;
+		std::cout << "Ошибка , нельзя удалить модуль" << std::endl;
 		system("pause");
 		return;
 	}
@@ -168,23 +168,25 @@ void programma::PopPodpr()
 	std::cin >> titleM;
 	int f = -1;
 	int j = 0;
-	while (j < this->count)
+	while (j < N)
 	{
 		if (strcmp(modl[j]->GetTitleModul(), titleM) == 0)
 		{
 			f = j;
 			std::cout << "Модуль найден " << std::endl;
 			modl[f]->Pop_Podpr();
-			system("pause");
 			return;
 		}
+		j++;
 	}
-	if (f = -1)
+	if(f==-1)
 	{
 		std::cout << "Модуль не найден " << std::endl;
 		system("pause");
 		return;
 	}
+	return;
+	
 }
 
 void programma::AddElement()
@@ -299,7 +301,7 @@ void programma::DeleteElement()
 	}
 	}
 }
-
+/*
 void programma::SaveFile()
 {
 	int i = 0;
@@ -347,3 +349,4 @@ void programma::SaveFile()
 		return;
 	}
 }
+*/
